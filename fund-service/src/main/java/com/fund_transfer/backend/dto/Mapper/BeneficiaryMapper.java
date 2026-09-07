@@ -1,11 +1,30 @@
 package com.fund_transfer.backend.dto.Mapper;
 
-import com.bank.ft.api.v1.dto.response.BeneficiaryResponse;
-import com.bank.ft.domain.entity.Beneficiary;
-import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
-public interface BeneficiaryMapper {
+import com.fund_transfer.backend.dto.Response.BeneficiaryResponse;
+import com.fund_transfer.backend.entity.Beneficiary;
+import org.springframework.stereotype.Component;
 
-    BeneficiaryResponse toResponse(Beneficiary beneficiary);
+
+
+
+@Component
+public class BeneficiaryMapper {
+
+    public BeneficiaryResponse toResponse(Beneficiary beneficiary) {
+        if (beneficiary == null) {
+            return null;
+        }
+
+        return new BeneficiaryResponse(
+                beneficiary.getId(),
+                beneficiary.getBeneficiaryName(),
+                beneficiary.getBeneficiaryAccountNumber(),
+                beneficiary.getBeneficiaryIfscCode(),
+                beneficiary.getNickname(),
+                beneficiary.getTransferMode(),
+                beneficiary.getStatus(),
+                beneficiary.getCoolingPeriodEndsAt()
+        );
+    }
 }
