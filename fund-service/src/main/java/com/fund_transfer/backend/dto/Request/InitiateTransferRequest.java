@@ -1,5 +1,6 @@
-package com.bank.ft.api.v1.dto.request;
+package com.fund_transfer.backend.dto.Request;
 
+import com.fund_transfer.backend.enums.TransferMode;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -8,7 +9,15 @@ import java.util.UUID;
 
 public record InitiateTransferRequest(
 
-        UUID beneficiaryId, // nullable — a one-time payee not saved as a Beneficiary is still valid
+        String idempotencyKey,
+
+        @NotBlank
+        String initiatorCif,
+
+        @NotNull
+        UUID initiatorKeycloakUserId,
+
+        UUID beneficiaryId,
 
         @NotBlank
         String destinationAccountNumber,
@@ -23,9 +32,11 @@ public record InitiateTransferRequest(
         @NotBlank
         String currency,
 
+        @NotNull
+        TransferMode transferMode,
+
         @NotBlank
-        String transferMode, // IMPS, NEFT, RTGS, INTRA_BANK
+        String bankCode,
 
         String remarks
-) {
-}
+) {}
