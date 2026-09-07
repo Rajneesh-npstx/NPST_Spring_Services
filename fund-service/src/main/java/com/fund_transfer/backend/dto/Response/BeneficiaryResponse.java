@@ -1,5 +1,9 @@
 package com.fund_transfer.backend.dto.Response;
 
+import com.fund_transfer.backend.entity.Beneficiary;
+import com.fund_transfer.backend.enums.BeneficiaryStatus;
+import com.fund_transfer.backend.enums.TransferMode;
+
 import java.time.Instant;
 import java.util.UUID;
 
@@ -9,8 +13,8 @@ public record BeneficiaryResponse(
         String beneficiaryAccountNumber,
         String beneficiaryIfscCode,
         String nickname,
-        String transferMode,
-        String status,
+        TransferMode transferMode,
+        BeneficiaryStatus status,
         Instant coolingPeriodEndsAt
 ) {
 }
