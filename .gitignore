@@ -33,3 +33,6 @@ target/
 ### macOS / OS ###
 .DS_Store
 Thumbs.db
+
+openapi.json
+SPRINGBOOT_SERVICES_SPECIFICATION.md
