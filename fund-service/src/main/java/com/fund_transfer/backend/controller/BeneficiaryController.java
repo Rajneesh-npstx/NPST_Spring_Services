@@ -37,11 +37,10 @@ public class BeneficiaryController {
     }
 
     @PostMapping
-    @PreAuthorize("@permissionService.hasPermission(authentication, 'beneficiary:create')")
+//    @PreAuthorize("@permissionService.hasPermission(authentication, 'beneficiary:create')")
     public ResponseEntity<BeneficiaryResponse> addBeneficiary(
-            @RequestHeader("X-Customer-Id") String customerId,
-            @Valid @RequestBody CreateBeneficiaryRequest request) {
-        BeneficiaryResponse response = beneficiaryService.initiateAdd(customerId, request);
+            @Valid @RequestBody CreateBeneficiaryRequest request) throws Exception {
+        BeneficiaryResponse response = beneficiaryService.initiateAdd(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 

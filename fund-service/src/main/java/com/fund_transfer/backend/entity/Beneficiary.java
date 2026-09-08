@@ -43,7 +43,7 @@ public class Beneficiary {
     private String ownerCif; // required — beneficiaries only exist for an actual account holder
 
     @Column(name = "owner_keycloak_user_id", nullable = false)
-    private UUID ownerKeycloakUserId; // cross-platform audit correlation
+    private String ownerKeycloakUserId; // cross-platform audit correlation
 
     @Column(name = "beneficiary_name", nullable = false, length = 100)
     private String beneficiaryName;
@@ -78,8 +78,8 @@ public class Beneficiary {
     @Column(name = "daily_limit_minor_units")
     private BigInteger dailyLimitMinorUnits; // nullable — falls back to the bank/tenant default limit if unset
 
-    @Column(name = "bank_code", nullable = false, length = 20)
-    private String bankCode; // tenant discriminator
+//    @Column(name = "bank_code", nullable = false, length = 20)
+//    private String bankCode; // tenant discriminator
 
     @Version
     private Long version; // a Checker blocking a beneficiary and the owner using it in-flight is a real race

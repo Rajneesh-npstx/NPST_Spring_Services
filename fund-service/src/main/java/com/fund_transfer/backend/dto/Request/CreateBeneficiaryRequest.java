@@ -14,6 +14,9 @@ public record CreateBeneficiaryRequest(
         String ownerCif,
 
         @NotBlank
+        String ownerKeycloakUserId,
+
+        @NotBlank
         String beneficiaryName,
 
         @NotBlank
@@ -32,9 +35,8 @@ public record CreateBeneficiaryRequest(
         TransferMode transferMode,
 
         @NotNull
-        BeneficiaryType type,
+        BeneficiaryType type
 
-        BigInteger dailyLimitMinorUnits
 
 ) {
 }

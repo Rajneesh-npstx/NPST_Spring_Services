@@ -36,21 +36,20 @@ public class BeneficiaryService {
 
     @Transactional
     public BeneficiaryResponse initiateAdd(
-            String ownerCustomerId,
             CreateBeneficiaryRequest request
-    ) {
+    ) throws Exception {
 
         // TODO: Add duplicate beneficiary validation here.
         //
-        // Example:
-        // if (repository.existsByOwnerCifAndBeneficiaryAccountNumberAndBeneficiaryIfscCode(
-        //         ownerCustomerId,
-        //         request.beneficiaryAccountNumber(),
-        //         request.beneficiaryIfscCode())) {
-        //     throw new DuplicateBeneficiaryException(
-        //             "Beneficiary already exists for this account and IFSC"
-        //     );
-        // }
+         Example:
+         if (repository.existsByOwnerCifAndBeneficiaryAccountNumberAndBeneficiaryIfscCode(
+                 request.ownerCif(),
+                 request.beneficiaryAccountNumber(),
+                 request.beneficiaryIfscCode())) {
+             throw new Exception(
+                     "Beneficiary already exists for this account and IFSC"
+             );
+         }
 
         /*
          * Determine beneficiary status and cooling period.
@@ -70,18 +69,15 @@ public class BeneficiaryService {
          * Create beneficiary.
          */
         Beneficiary beneficiary = Beneficiary.builder()
-                .ownerCif(ownerCustomerId)
-                .ownerKeycloakUserId(ownerKeycloakUserId)
+                .ownerCif(request.ownerCif())
+                .ownerKeycloakUserId(request.ownerKeycloakUserId())
                 .beneficiaryName(request.beneficiaryName())
                 .beneficiaryAccountNumber(request.beneficiaryAccountNumber())
                 .beneficiaryIfscCode(request.beneficiaryIfscCode())
                 .nickname(request.nickname())
                 .transferMode(request.transferMode())
-                .type(request.type())
                 .status(status)
-                .coolingPeriodEndsAt(coolingPeriodEndsAt)
-                .dailyLimitMinorUnits(request.dailyLimitMinorUnits())
-                .bankCode(bankCode)
+                .type(request.type())
                 .build();
 
         /*
