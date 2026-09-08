@@ -1,6 +1,6 @@
-package com.bank.termdeposit.domain.entity;
+package com.term_deposit.domain.entity;
 
-import com.bank.termdeposit.common.enums.IdempotencyStatus;
+import com.term_deposit.common.enums.IdempotencyStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

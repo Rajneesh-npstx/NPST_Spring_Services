@@ -1,4 +1,4 @@
-package com.bank.termdeposit.domain.entity;
+package com.term_deposit.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
