@@ -30,4 +30,10 @@ management:
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
+
+cbs:
+  base-url: ${CBS_BASE_URL:http://localhost:9090/api/v1}
+  channel-id: ${CBS_CHANNEL_ID:INTERNET_BANKING}
+  user-id: ${CBS_USER_ID:APIUSER}
+  branch-code: ${CBS_BRANCH_CODE:001}
  

@@ -29,6 +29,8 @@ public class CbsAccountGatewayImpl implements CbsAccountGateway {
     @Value("${cbs.channel-id:INTERNET_BANKING}")
     private String channelId;
 
+    private final com.fasterxml.jackson.dataformat.xml.XmlMapper xmlMapper = new com.fasterxml.jackson.dataformat.xml.XmlMapper();
+
     @Override
     public List<Account> getAccountsByCif(String cifId) {
 
@@ -44,6 +46,10 @@ public class CbsAccountGatewayImpl implements CbsAccountGateway {
                 .header("X-Correlation-Id", correlationId())
                 .body(request)
                 .retrieve()
+                .onStatus(org.springframework.http.HttpStatusCode::isError, (req, res) -> {
+                    CbsError err = xmlMapper.readValue(res.getBody(), CbsError.class);
+                    throw CbsErrorMapper.toException(err);
+                })
                 .body(new org.springframework.core.ParameterizedTypeReference<>() {});
 
         if (response == null || response.getBody() == null) {
