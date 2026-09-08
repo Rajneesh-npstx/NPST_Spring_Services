@@ -16,7 +16,11 @@ public class TransactionMapper {
         return new TransactionResponse(
                 transaction.getId(),
                 transaction.getTransactionReference(),
+                transaction.getCbsReferenceNumber(),
+                transaction.getIdempotencyKey(),
                 transaction.getInitiatorCif(),
+                transaction.getInitiatorKeycloakUserId(),
+                transaction.getBeneficiaryId(),
                 transaction.getDestinationAccountNumber(),
                 transaction.getDestinationIfscCode(),
                 transaction.getAmountMinorUnits(),
@@ -24,8 +28,13 @@ public class TransactionMapper {
                 transaction.getTransferMode(),
                 transaction.getStatus(),
                 transaction.getFailureReason(),
+                transaction.getRemarks(),
+                transaction.getBankCode(),
+                transaction.getVersion(),
                 transaction.getInitiatedAt(),
-                transaction.getCompletedAt()
+                transaction.getCompletedAt(),
+                transaction.getCreatedAt(),
+                transaction.getUpdatedAt()
         );
     }
 }
