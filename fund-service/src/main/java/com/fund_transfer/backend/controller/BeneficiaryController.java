@@ -44,5 +44,4 @@ public class BeneficiaryController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-
 }

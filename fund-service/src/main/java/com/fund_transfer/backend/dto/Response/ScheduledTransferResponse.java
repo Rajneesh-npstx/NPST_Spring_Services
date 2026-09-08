@@ -1,24 +1,29 @@
 package com.fund_transfer.backend.dto.Response;
 
+import com.fund_transfer.backend.enums.ScheduleFrequency;
+import com.fund_transfer.backend.enums.ScheduleStatus;
+import com.fund_transfer.backend.enums.TransactionStatus;
+import com.fund_transfer.backend.enums.TransferMode;
+
 import java.math.BigInteger;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.UUID;
 
 public record ScheduledTransferResponse(
-        UUID id,
+        Long id,
         String cif,
-        UUID beneficiaryId,
+        Long beneficiaryId,
         BigInteger amountMinorUnits,
-        String transferMode,
-        String frequency,
+        TransferMode transferMode,
+        ScheduleFrequency frequency,
         LocalDate nextExecutionDate,
         LocalDate endDate,
-        String status,
-        String lastExecutionStatus,
+        ScheduleStatus status,
+        ScheduleStatus lastExecutionStatus,
         Instant lastExecutedAt,
-        int retryCount,
-        int maxRetries,
+        Long retryCount,
+        Long maxRetries,
         Instant createdAt,
         Instant updatedAt
 ) {
