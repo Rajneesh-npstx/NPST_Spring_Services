@@ -6,6 +6,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 import com.fund_transfer.backend.enums.BeneficiaryStatus;
+import com.fund_transfer.backend.enums.BeneficiaryType;
 import com.fund_transfer.backend.enums.TransferMode;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -36,7 +37,7 @@ public class Beneficiary {
 
     @Id
     @GeneratedValue
-    private UUID id;
+    private Long id;
 
     @Column(name = "owner_cif", nullable = false, length = 20)
     private String ownerCif; // required — beneficiaries only exist for an actual account holder
@@ -66,6 +67,10 @@ public class Beneficiary {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 30)
     private BeneficiaryStatus status;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 10)
+    private BeneficiaryType type;
 
     @Column(name = "cooling_period_ends_at")
     private Instant coolingPeriodEndsAt; // nullable once status moves past PENDING_COOLING_PERIOD
