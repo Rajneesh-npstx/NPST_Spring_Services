@@ -5,6 +5,7 @@ import com.fund_transfer.backend.api.v1.mapper.AccountMapper;
 import com.fund_transfer.backend.domain.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 import java.util.List;
 
 @RestController
@@ -14,8 +15,9 @@ public class AccountController {
 
    private final AccountService accountService;
    private final AccountMapper accountMapper;
-   
+
    @GetMapping
+   @PreAuthorize("hasAuthority('ACCOUNT_VIEW')")
    public List<AccountResponse> list(@RequestParam(required = false) String cifId) {
        var accounts = (cifId == null || cifId.isBlank())
                ? accountService.listAccounts()
