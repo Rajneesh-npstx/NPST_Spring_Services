@@ -24,6 +24,11 @@ public class ScheduledTransferMapper {
                 scheduledTransfer.getEndDate(),
                 scheduledTransfer.getStatus(),
                 scheduledTransfer.getLastExecutionStatus(),
+                scheduledTransfer.getLastExecutedAt(),
+                scheduledTransfer.getRetryCount(),
+                scheduledTransfer.getMaxRetries(),
+                scheduledTransfer.getCreatedAt(),
+                scheduledTransfer.getUpdatedAt()
         );
     }
 }

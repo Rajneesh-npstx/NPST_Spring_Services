@@ -44,16 +44,16 @@ public class ScheduledTransfer {
 
     @Id
     @GeneratedValue
-    private UUID id;
+    private Long id;
 
     @Column(nullable = false, length = 20)
     private String cif;
 
     @Column(name = "keycloak_user_id", nullable = false)
-    private UUID keycloakUserId;
+    private String keycloakUserId;
 
     @Column(name = "beneficiary_id", nullable = false)
-    private UUID beneficiaryId;
+    private Long beneficiaryId;
 
     @Column(name = "amount_minor_units", nullable = false)
     private BigInteger amountMinorUnits;
@@ -77,21 +77,21 @@ public class ScheduledTransfer {
     private ScheduleStatus status;
 
     @Column(name = "last_execution_status", length = 20)
-    private String lastExecutionStatus; // deliberately a plain string, not TransactionStatus — see schema doc's open item #5
+    private ScheduleStatus lastExecutionStatus; // deliberately a plain string, not TransactionStatus — see schema doc's open item #5
 
     @Column(name = "last_executed_at")
     private Instant lastExecutedAt;
 
     @Column(name = "retry_count", nullable = false)
     @Builder.Default
-    private int retryCount = 0;
+    private Long retryCount = 0L;
 
     @Column(name = "max_retries", nullable = false)
     @Builder.Default
-    private int maxRetries = 3;
+    private Long maxRetries = 3L;
 
-    @Column(name = "bank_code", nullable = false, length = 20)
-    private String bankCode;
+//    @Column(name = "bank_code", nullable = false, length = 20)
+//    private String bankCode;
 
     @Version
     private Long version; // ScheduledTransferSchedulerJob writes here on every execution attempt

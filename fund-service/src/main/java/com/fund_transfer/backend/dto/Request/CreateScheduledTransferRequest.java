@@ -1,7 +1,7 @@
-package com.bank.ft.api.v1.dto.request;
+package com.fund_transfer.backend.dto.Request;
 
-import com.bank.ft.domain.statemachine.ScheduleFrequency;
-import com.bank.ft.domain.statemachine.TransferMode;
+import com.fund_transfer.backend.enums.ScheduleFrequency;
+import com.fund_transfer.backend.enums.TransferMode;
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

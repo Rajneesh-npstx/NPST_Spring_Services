@@ -8,7 +8,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 public record BeneficiaryResponse(
-        UUID id,
+        Long id,
         String ownerCif,
         String beneficiaryName,
         String beneficiaryAccountNumber,
