@@ -9,7 +9,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
-import java.time.Instant;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Entity
@@ -37,7 +37,7 @@ public class Account {
     private String accountNumber;
 
     @Column(name = "customer_id", nullable = false, length = 30)
-    private String customerId;
+    private UUID customerId;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "account_type", nullable = false, length = 30)
@@ -70,9 +70,9 @@ public class Account {
 
     @CreatedDate
     @Column(name = "created_at", updatable = false)
-    private Instant createdAt;
+    private OffsetDateTime createdAt;
 
     @LastModifiedDate
     @Column(name = "updated_at")
-    private Instant updatedAt;
+    private OffsetDateTime updatedAt;
 }
